@@ -9,28 +9,50 @@
 //compare the first number in the extra candies array to the highest number in the input, if it doesnt beat the highest number in the array, the the answer is false. else its true,
 
 
-var distributeCandies = function(kidsCandies, extra) {
-  let withExtra = []
-  let copyArray = []
-  let answer = []
+// var distributeCandies = function(kidsCandies, extra) {
+//   let withExtra = []
+//   let copyArray = []
+//   let answer = []
 
-  for(let i=0; i<kidsCandies.length; i++){
-    copyArray.push(kidsCandies[i])
-    withExtra.push(kidsCandies[i] + extra)
-  }
+//   for(let i=0; i<kidsCandies.length; i++){
+//     copyArray.push(kidsCandies[i])
+//     withExtra.push(kidsCandies[i] + extra)
+//   }
 
-  let newOrder = copyArray.sort(function(a,b){return b-a})
-  let highestNum = newOrder[0]  
+//   let newOrder = copyArray.sort(function(a,b){return b-a})
+//   let highestNum = newOrder[0]  
 
-  for(let i=0; i<withExtra.length; i++){
-    if(withExtra[i] >= highestNum){
-      answer.push(true)
-  } else{
-    answer.push(false)
-  }
-}
- console.log(answer)
-}
+//   for(let i=0; i<withExtra.length; i++){
+//     if(withExtra[i] >= highestNum){
+//       answer.push(true)
+//   } else{
+//     answer.push(false)
+//   }
+// }
+//  console.log(answer)
+// }
   
+
+// console.log(distributeCandies([2,3,5,1,3], 3))
+
+
+
+
+
+
+
+var distributeCandies = function(kidsCandies, extra) {
+  let highest = Math.max(...kidsCandies)
+  let answer = []
+  for(let i=0; i<kidsCandies.length; i++){
+    if(kidsCandies[i] + extra >= highest){
+        answer.push(true)
+    } else{
+      answer.push(false)
+    }
+  } return answer
+}
+
+
 
 console.log(distributeCandies([2,3,5,1,3], 3))
