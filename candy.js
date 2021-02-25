@@ -1,59 +1,36 @@
-var distributeCandies = function(candies, num_people) {
-    candies = 7
-    num_people = 4
-    emptyArray = []
-
-    let ans = new Array(num_people).fill(0);
-  console.log(ans)
-    // while(num_people>0){
-    //     emptyArray.push(0)
-    //     num_people= num_people - 1
-    //     //this gave me an array with 4 slots
-    // } 
-    //      for(let i=0; i<emptyArray.length; i++){
-    //         while (candies >0 ){
-    //             1 = 1% num_people
-        //     emptyArray[i]++
-        //     if(candies<emptyArray.length){
-        //         emptyArray[0]+ candies
-        //     }
-        //     console.log("this", emptyArray)
-
-        }
-    
-   
+// Given the array candies and the integer extraCandies, where candies[i] represents the number of candies that the ith kid has.
+// For each kid check if there is a way to distribute extraCandies among the kids such that he or she can have the greatest number of candies among them. Notice that multiple kids can have the greatest number of candies.
 
 
 
- console.log(distributeCandies())
-
-//we need to return an array. 
-//num people = final array length
-// every index of the array gets candies +1
-//as the choc per person goes up the candy total decreases,
-//the intial array is 0, the first person gets 1, second person gets 2
-//try to have an else statement if candies = 0
-//prob need a for loop that makes rhe lenfth of the final array the length of people.
+//                      thought process:
+//this is the array once all the kids get the extra candies [5,6,8,4,6]
+// sort the input from high to low and get the highest number. the input is [2,3,5,1,3]   ... highest number is 5.
+//compare the first number in the extra candies array to the highest number in the input, if it doesnt beat the highest number in the array, the the answer is false. else its true,
 
 
-//create an empty array that its length is num_people
-//find out how to add +1 +2 to each item of that array
-//arr length = num people
-// --1 candies 
+var distributeCandies = function(kidsCandies, extra) {
+  let withExtra = []
+  let copyArray = []
+  let answer = []
 
+  for(let i=0; i<kidsCandies.length; i++){
+    copyArray.push(kidsCandies[i])
+    withExtra.push(kidsCandies[i] + extra)
+  }
 
+  let newOrder = copyArray.sort(function(a,b){return b-a})
+  let highestNum = newOrder[0]  
 
+  for(let i=0; i<withExtra.length; i++){
+    if(withExtra[i] >= highestNum){
+      answer.push(true)
+  } else{
+    answer.push(false)
+  }
+}
+ console.log(answer)
+}
+  
 
-// var distributeCandies = function(candies, num_people) {
-//     candies = 7
-//     num_people = 4
-//      emptyArray =[]
-//    while(candies>0){
-//        emptyArray.push([+1])
-//        console.log(emptyArray)
-//        candies = candies -1
-//    }
-// };
-
-
-// console.log(distributeCandies())
+console.log(distributeCandies([2,3,5,1,3], 3))
